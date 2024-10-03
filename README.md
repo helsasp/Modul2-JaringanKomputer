@@ -1,7 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/99wpTe72)
 | Name           | NRP        | Kelas     |
 | ---            | ---        | ----------|
-| xxxxxxx | xxxxxx | Jaringan Komputer (x) |
+| Helsa Sriprameswari Putri | 5025221154 | Jaringan Komputer (C) |
 | xxxxxxx | xxxxxx | Jaringan Komputer (x) |
 
 ## Find your topology here!
@@ -31,11 +31,12 @@
 
 - Screenshot
 
-  `Put your screenshot in here`
+  `![image](https://github.com/user-attachments/assets/97db444d-c8fe-4aee-b0fa-c1a3ec9a94e1)
+`
 
 - Explanation
 
-  `Put your explanation in here`
+  `Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet.`
 
 <br>
 
@@ -53,12 +54,16 @@
 **Answer:**
 
 - Screenshot
+![image](https://github.com/user-attachments/assets/a6f9b880-4e52-4162-a417-5bd24f312c9f)
+![image](https://github.com/user-attachments/assets/778d1da9-f7cd-4c10-8164-d389965ef61f)
+![image](https://github.com/user-attachments/assets/33f93eff-4e05-4704-a263-ba316201c4f0)
 
-  `Put your screenshot in here`
+
+`
 
 - Explanation
 
-  `Put your explanation in here`
+  `Webserver buncis,borkoli,dan bayam sudah bisa ping brokoli.c05.com, buncis.c05.com, dan bayam.c05.com`
 
 <br>
 
@@ -72,11 +77,14 @@
 
 - Screenshot
 
-  `Put your screenshot in here`
+![image](https://github.com/user-attachments/assets/87394a3b-4e3d-4443-9daa-684e5401f034)
+![image](https://github.com/user-attachments/assets/f5f1165b-5f55-4de6-b13b-cdb65bb331fe)
+![image](https://github.com/user-attachments/assets/dce0cefc-4844-4c37-9479-20fc7cbf095c)
+
 
 - Explanation
 
-  `Put your explanation in here`
+  `Webserver buncis,borkoli,dan bayam sudah bisa ping brokoli.c05.com, buncis.c05.com, dan bayam.c05.com dengan alias www.brokoli.c05.com, www.buncis.c05.com, dan www.bayam.c05.com `
 
 <br>
 
@@ -118,11 +126,12 @@
 
 - Screenshot
 
-  `Put your screenshot in here`
+  ![image](https://github.com/user-attachments/assets/7a61242d-8d65-4b42-83dd-d1583fdaa065)
+
 
 - Explanation
 
-  `Put your explanation in here`
+  `Webserver bayam berhasil melakukan ping ke ping bayam.c05.com -c 5 dan ping www.bayam.c05.com -c 5 yang artinya setup sudah sesuai dan tidak ada masalah.`
 
 <br>
 
@@ -136,11 +145,12 @@
 
 - Screenshot
 
-  `Put your screenshot in here`
+  `![image](https://github.com/user-attachments/assets/c7575ed8-9135-46d7-ac30-da71efa78b64)
+`
 
 - Explanation
 
-  `Put your explanation in here`
+  `Ketika WortelDNSMaster di stop, PokcoyDNSlave berperan menjadi dnsslave yang tetap menjalankan server ketika dn master unaivalable. Client bisa tetap melakukan ping server walaupun DNS master dimatikan dengan bantuan DNS slave.`
 
 <br>
 
@@ -154,11 +164,12 @@
 
 - Screenshot
 
-  `Put your screenshot in here`
+  `![image](https://github.com/user-attachments/assets/52dd0472-3d48-4ea9-88fe-8416d4e6252a)
+`
 
 - Explanation
 
-  `Put your explanation in here`
+  `Client sudah bisa ping ke subdomain vitamin.brokoli.c05.com dengan alias www.vitamin.brokoli.c05.com`
 
 <br>
 
