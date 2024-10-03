@@ -13,7 +13,7 @@
 ## Put your topology config image here!
 
 ![image](https://github.com/user-attachments/assets/bf886f2f-eee9-4b4b-887f-2a356f898cc4)
-`
+
 
 <br>
 
@@ -31,8 +31,7 @@
 
 - Screenshot
 
-  `![image](https://github.com/user-attachments/assets/97db444d-c8fe-4aee-b0fa-c1a3ec9a94e1)
-`
+![image](https://github.com/user-attachments/assets/97db444d-c8fe-4aee-b0fa-c1a3ec9a94e1)
 
 - Explanation
 
@@ -59,7 +58,6 @@
 ![image](https://github.com/user-attachments/assets/33f93eff-4e05-4704-a263-ba316201c4f0)
 
 
-`
 
 - Explanation
 
@@ -145,8 +143,8 @@
 
 - Screenshot
 
-  `![image](https://github.com/user-attachments/assets/c7575ed8-9135-46d7-ac30-da71efa78b64)
-`
+  ![image](https://github.com/user-attachments/assets/c7575ed8-9135-46d7-ac30-da71efa78b64)
+
 
 - Explanation
 
@@ -164,8 +162,8 @@
 
 - Screenshot
 
-  `![image](https://github.com/user-attachments/assets/52dd0472-3d48-4ea9-88fe-8416d4e6252a)
-`
+  ![image](https://github.com/user-attachments/assets/52dd0472-3d48-4ea9-88fe-8416d4e6252a)
+
 
 - Explanation
 
