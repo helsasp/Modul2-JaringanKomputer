@@ -35,7 +35,95 @@
 
 - Explanation
 
-  `Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet.`
+  `Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet.
+  Config : 
+Mayur
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address 10.92.1.1
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 10.92.2.1
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 10.92.3.1
+	netmask 255.255.255.0
+
+auto eth4
+iface eth4 inet static
+	address 10.92.4.1
+	netmask 255.255.255.0
+
+up iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.92.0.0/16
+
+TomatClient
+
+auto eth0
+iface eth0 inet static
+	address 10.92.1.2
+	netmask 255.255.255.0
+	gateway 10.92.1.1
+
+TaugeClient
+
+auto eth0
+iface eth0 inet static
+	address 10.92.2.2
+	netmask 255.255.255.0
+	gateway 10.92.2.1
+
+
+
+PokCoyDNSSlave
+
+
+auto eth0
+iface eth0 inet static
+	address 10.92.3.2
+	netmask 255.255.255.0
+	gateway 10.92.3.1
+
+WortelDNSMaster
+
+auto eth0
+iface eth0 inet static
+	address 10.92.3.3
+	netmask 255.255.255.0
+	gateway 10.92.3.1
+
+BrokoliWebServer
+
+auto eth0
+iface eth0 inet static
+	address 10.92.4.2
+	netmask 255.255.255.0
+	gateway 10.92.4.1
+
+BuncisWebServer
+
+auto eth0
+iface eth0 inet static
+	address 10.92.4.3
+	netmask 255.255.255.0
+	gateway 10.92.4.1
+
+BayamWebServer
+
+auto eth0
+iface eth0 inet static
+	address 10.92.4.4
+	netmask 255.255.255.0
+	gateway 10.92.4.1
+
+`
 
 <br>
 
