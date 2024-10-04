@@ -96,11 +96,12 @@
 
 - Screenshot
 
-  `Put your screenshot in here`
+  ![image](https://github.com/user-attachments/assets/6ec4dc7e-484f-4778-9531-b1b7fcf16b5c)
+
 
 - Explanation
 
-  `Put your explanation in here`
+  `Client sudah bisa melakukan reverse ping dimana host -t PTR 10.92.4.2 mengarah ke brokoli.c05.com dan host -t PTR 10.92.4.3 mengarah ke buncis.c05.com `
 
 <br>
 
