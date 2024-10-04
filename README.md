@@ -307,7 +307,7 @@ Bayam
 ping www.bayam.c05.com -c 5
 ```
 
-Untuk www.brokoli.c05.com
+Untuk www.brokoli.c05.com <br>
 
 Wortel
 ```
@@ -331,7 +331,7 @@ Brokoli
 ```
 ping www.brokoli.c05.com -c 5
 ```
-Untuk www.buncis.c05.com
+Untuk www.buncis.c05.com <br>
 Wortel
 ```
 nano /etc/bind/jarkom/buncis.c05.com
@@ -374,7 +374,53 @@ ping www.buncis.c05.com -c 5
 
 - Explanation
 
-  `Client sudah bisa melakukan reverse ping dimana host -t PTR 10.92.4.2 mengarah ke brokoli.c05.com dan host -t PTR 10.92.4.3 mengarah ke buncis.c05.com `
+  Client sudah bisa melakukan reverse ping dimana host -t PTR 10.92.4.2 mengarah ke brokoli.c05.com dan host -t PTR 10.92.4.3 mengarah ke buncis.c05.com
+
+Wortel :
+```
+nano /etc/bind/named.conf.local
+
+  zone "4.92.10.in-addr.arpa" {
+  type master;
+  file "/etc/bind/jarkom/4.92.10.in-addr.arpa";
+  };
+
+cp /etc/bind/db.local /etc/bind/jarkom/4.92.10.in-addr.arpa
+
+  nano /etc/bind/jarkom/4.92.10.in-addr.arpa
+
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     brokoli.c05.com. root.brokoli.c05.com. (
+                        2024100601      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+4.92.10.in-addr.arpa. IN      NS      brokoli.c05.com.
+2                       IN      PTR     brokoli.c05.com. 
+4.92.10.in-addr.arpa. IN      NS      buncis.c05.com.
+3                       IN      PTR     buncis.c05.com.;
+
+
+  service bind9 restart
+ 
+``` 
+Di client (Tomat Client)
+```
+apt-get update
+apt-get install dnsutils
+
+nano /etc/resolv.conf
+echo nameserver 10.92.3.3 > /etc/resolv.conf
+
+  host -t PTR 10.92.4.2
+
+```
+
 
 <br>
 
