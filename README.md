@@ -278,7 +278,84 @@ ping buncis.c05.com -c 5
 
 - Explanation
 
-  `Webserver buncis,borkoli,dan bayam sudah bisa ping brokoli.c05.com, buncis.c05.com, dan bayam.c05.com dengan alias www.brokoli.c05.com, www.buncis.c05.com, dan www.bayam.c05.com `
+  Webserver buncis,borkoli,dan bayam sudah bisa ping brokoli.c05.com, buncis.c05.com, dan bayam.c05.com dengan alias www.brokoli.c05.com, www.buncis.c05.com, dan www.bayam.c05.com
+
+Untuk www.bayam.c05.com : <br>
+
+Wortel
+```
+nano /etc/bind/jarkom/bayam.c05.com
+
+$TTL	604800
+@   	IN  	SOA	bayam.c05.com. root.bayam.c05.com. (
+                    	2023101001  	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	bayam.c05.com.
+@   	IN  	A   	10.92.4.4   	; IP Bayam
+www 	IN  	CNAME   bayam.c05.com.  ; Alias
+
+service bind9 restart
+```
+
+
+Bayam
+```
+ping www.bayam.c05.com -c 5
+```
+
+Untuk www.brokoli.c05.com
+
+Wortel
+```
+nano /etc/bind/jarkom/brokoli.c05.com
+
+$TTL	604800
+@   	IN  	SOA	brokoli.c05.com. root.brokoli.c05.com. (
+                    	2023101001  	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	brokoli.c05.com.
+@   	IN  	A   	10.92.4.2   	; Ganti dengan IP node Brokoli 
+www 	IN  	CNAME   brokoli.c05.com. ; Alias 
+
+service bind9 restart
+```
+Brokoli
+```
+ping www.brokoli.c05.com -c 5
+```
+Untuk www.buncis.c05.com
+Wortel
+```
+nano /etc/bind/jarkom/buncis.c05.com
+
+$TTL	604800
+@   	IN  	SOA	buncis.c05.com. root.buncis.c05.com. (
+                    	2023101001  	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	buncis.c05.com.
+@   	IN  	A   	10.92.4.3   	; Ganti dengan IP node Buncis
+www 	IN  	CNAME   buncis.c05.com. ; Alias 
+
+service bind9 restart
+```
+Buncis
+```
+ping www.buncis.c05.com -c 5
+
+```
+
 
 <br>
 
