@@ -453,6 +453,11 @@ echo nameserver 10.92.3.3 > /etc/resolv.conf
 
 <br>
 
+```
+
+```
+
+
 ## Soal 6
 
 > Untuk menangani request yang berlebih dari client ke ketiga alamat yang tadi dibuat, konfigurasikan node Pokcoy sebagai DNS Slave yang bekerja untuk DNS Master Wortel.
