@@ -35,7 +35,7 @@
 
 - Explanation
 
-Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet.
+Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet. <br>
   Config : 
 ```
 Mayur
@@ -124,7 +124,7 @@ iface eth0 inet static
 	netmask 255.255.255.0
 	gateway 10.92.4.1
 ```
-
+Lalu lakukan `echo "nameserver 10.92.3.3" > /etc/resolv.conf` ke semua node
 <br>
 
 ## Soal 2
@@ -149,7 +149,115 @@ iface eth0 inet static
 
 - Explanation
 
-  `Webserver buncis,borkoli,dan bayam sudah bisa ping brokoli.c05.com, buncis.c05.com, dan bayam.c05.com`
+  Webserver buncis,borkoli,dan bayam sudah bisa ping brokoli.c05.com, buncis.c05.com, dan bayam.c05.com <br>
+
+Untuk bayam.c05.com : <br>
+
+Wortel
+```
+apt-get update
+apt-get install bind9 -y
+
+nano /etc/bind/named.conf.local
+
+zone "bayam.c05.com" {
+	type master;
+	file "/etc/bind/jarkom/bayam.c05.com";
+	allow-transfer { 10.92.4.4; };  // IP Bayam
+};
+
+
+nano /etc/bind/jarkom/bayam.c05.com
+
+$TTL	604800
+@   	IN  	SOA	bayam.c05.com. root.bayam.c05.com. (
+                    	2023101001  	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	bayam.c05.com.
+@   	IN  	A   	10.92.4.4   	; IP Bayam
+
+service bind9 restart
+```
+Bayam
+```
+echo "nameserver 10.92.3.3" > /etc/resolv.conf
+
+ping bayam.c05.com -c 5
+```
+
+Untuk brokoli.c05.com :<br>
+
+Wortel
+```
+nano /etc/bind/named.conf.local
+
+zone "brokoli.c05.com" {
+	type master;
+	file "/etc/bind/jarkom/brokoli.c05.com";
+	allow-transfer { 10.92.4.2; };  // IP Brokoli
+};
+
+
+nano /etc/bind/jarkom/brokoli.c05.com
+
+$TTL	604800
+@   	IN  	SOA	brokoli.c05.com. root.brokoli.c05.com. (
+                    	2023101001  	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	bayam.c05.com.
+@   	IN  	A   	10.92.4.2   	; IP Brokoli
+
+service bind9 restart
+```
+Brokoli
+```
+echo "nameserver 10.92.3.3" > /etc/resolv.conf
+
+ping brokoli.c05.com -c 5
+```
+
+Untuk buncis.c05.com
+
+Wortel
+```
+nano /etc/bind/named.conf.local
+
+zone "buncis.c05.com" {
+	type master;
+	file "/etc/bind/jarkom/brokoli.c05.com";
+	allow-transfer { 10.92.4.3; };  // IP Buncis
+};
+
+
+nano /etc/bind/jarkom/buncis.c05.com
+
+$TTL	604800
+@   	IN  	SOA	buncis.c05.com. root.buncis.c05.com. (
+                    	2023101001  	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	buncis.c05.com.
+@   	IN  	A   	10.92.4.3   	; IP Buncis
+
+service bind9 restart
+```
+Buncis
+```
+echo "nameserver 10.92.3.3" > /etc/resolv.conf
+
+ping buncis.c05.com -c 5
+```
 
 <br>
 
