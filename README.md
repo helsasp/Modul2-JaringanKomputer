@@ -480,6 +480,19 @@ echo nameserver 10.92.3.3 > /etc/resolv.conf
 
 <br>
 
+Konfigurasi dari shell script yang berada di dns master
+<br>
+
+
+<img width="562" alt="image" src="https://github.com/user-attachments/assets/7c014be1-77e0-49b6-bcb8-e24d4fc33a4c">
+
+<br>
+
+Konfigurasi shell script yang berada di dns slave
+
+![image](https://github.com/user-attachments/assets/d46f0c50-6c2f-4a91-8b3f-49362184347c)
+
+
 ## Soal 7
 
 > Karena membutuhkan tempat untuk menyimpan resep brokoli, buatlah subdomain berupa vitamin.brokoli.yyy.com dengan alias www.vitamin.brokoli.yyy.com dengan mendelegasikannya dari Wortel ke Pokcoy dengan alamat IP menuju Brokoli yang diatur di folder Vitamin.
