@@ -510,6 +510,56 @@ Konfigurasi shell script yang berada di dns slave
 
   `Client sudah bisa ping ke subdomain vitamin.brokoli.c05.com dengan alias www.vitamin.brokoli.c05.com`
 
+  Pada DNS Master
+
+  ```
+  nano /etc/bind/named.conf.options
+  comment dnssc
+  allow-query{any;};
+  ```
+
+  Pada DNS Slave
+  ```
+  nano /etc/bind/named.conf.options
+  ```
+  ```
+  comment dnssc
+  allow-query{any;};
+  ```
+  
+  ```
+  nano /etc/bind/named.conf.local
+  ```
+  ```
+  zone "vitamin.brokoli.c05.com" {
+	type master;
+	file "/etc/bind/vitamini/vitamin.brokoli.c05.com";
+  };
+  ```
+
+  ```
+  mkdir /etc/bind/vitamin
+  cp /etc/bind/db.local /etc/bind/vitamin/vitamin.brokoli.c05.com
+  nano /etc/bind/vitamin/vitamin.brokoli.c05.com
+  ;
+  ; BIND data file for local loopback interface
+  ;
+  $TTL	604800
+  @   	IN  	SOA 	vitamin.brokoli.c05.com. root.vitamin.brokoli.c05.com. (
+                     	2024100601 	; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+  ;
+  @   	IN  	NS  	vitamin.brokoli.c05.com.
+  @   	IN  	A   	10.92.3.2	; IP Pokcoy
+  www 	IN  	CNAME   vitamin.brokoli.c05.com.  ; Alias www.vitamin.brokoli.c05.com
+  ```
+  ```
+  service bind9 restart
+
+  ```
 <br>
 
 ## Soal 8
