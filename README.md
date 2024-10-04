@@ -2,7 +2,7 @@
 | Name           | NRP        | Kelas     |
 | ---            | ---        | ----------|
 | Helsa Sriprameswari Putri | 5025221154 | Jaringan Komputer (C) |
-| xxxxxxx | xxxxxx | Jaringan Komputer (x) |
+| Jamaluddin | 5025221157 | Jaringan Komputer (C) |
 
 ## Find your topology here!
 
