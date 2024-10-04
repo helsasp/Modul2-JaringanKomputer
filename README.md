@@ -453,9 +453,12 @@ echo nameserver 10.92.3.3 > /etc/resolv.conf
 
 <br>
 
-```
+![image](https://github.com/user-attachments/assets/47ff6efe-9879-49db-b37a-96945096bacf)
 
-```
+<br>
+
+
+
 
 
 ## Soal 6
