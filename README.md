@@ -572,11 +572,15 @@ Konfigurasi shell script yang berada di dns slave
 
 - Screenshot
 
-  `Put your screenshot in here`
+  ![image](https://github.com/user-attachments/assets/a0c39509-8727-4e02-a0f8-25da465d861c)
+
 
 - Explanation
 
-  `Put your explanation in here`
+  `web server bayam berhasil ping ke sub domain vitamin yaitu k1.vitamin.brokoli.c05.com`
+
+  ![image](https://github.com/user-attachments/assets/d2ac9235-7c1c-41f6-9287-d6d1d0fa3d2d)
+
 
 <br>
 
