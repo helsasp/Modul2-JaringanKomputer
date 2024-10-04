@@ -35,8 +35,9 @@
 
 - Explanation
 
-  `Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet.
+Client sudah bisa ping ke google.com yang artinya sudah terconnect server internet.
   Config : 
+```
 Mayur
 
 auto eth0
@@ -122,8 +123,7 @@ iface eth0 inet static
 	address 10.92.4.4
 	netmask 255.255.255.0
 	gateway 10.92.4.1
-
-`
+```
 
 <br>
 
