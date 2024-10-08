@@ -820,7 +820,7 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 
 - Screenshot
 
-  `Put your screenshot in here`
+![image](https://github.com/user-attachments/assets/f574d270-849e-4afb-9e8a-3da28b4c09ce)
 
 - Explanation
 
@@ -838,7 +838,10 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 
 - Screenshot
 
-  `Put your screenshot in here`
+
+![image](https://github.com/user-attachments/assets/828c97e4-60ae-4789-a9e5-94b2e538bd1b)
+![image](https://github.com/user-attachments/assets/212ac345-af3f-4124-8b0a-e9b72cc65818)
+
 
 - Explanation
 
@@ -850,3 +853,5 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 lots of problems actually
 
 ## Revisions (if any)
+
+Webserver tasks were done during the revisions period
