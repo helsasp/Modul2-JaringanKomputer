@@ -680,7 +680,9 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 
 - Screenshot
 
-  `Put your screenshot in here`
+![image](https://github.com/user-attachments/assets/bc7833fb-b2ef-4cb7-b21d-93292242288a)
+![image](https://github.com/user-attachments/assets/4a27e0f9-c123-427a-9013-49ad9ba873ff)
+
 
 - Explanation
 
