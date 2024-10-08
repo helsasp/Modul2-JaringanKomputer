@@ -578,7 +578,7 @@ Konfigurasi shell script yang berada di dns slave
 
 - Explanation
 
-  `web server bayam berhasil ping ke sub domain vitamin yaitu k1.vitamin.brokoli.c05.com`
+  `web server bayam berhasil ping ke sub domain vitamin yaitu k1.vitamin.brokoli.c05.com` <br>
 Di Pokcoy (Slave):
 
  ```
@@ -655,14 +655,8 @@ ping www.k1.vitamin.brokoli.c05.com.
   Di bayam (web server) :
  ```
 apt-get update
-
-# Install Nginx dan PHP jika belum terpasang
 apt-get install -y nginx php php-fpm wget unzip
-
-# Download file sayur_webserver_nginx.zip dari Google Drive
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1tFDk7pKRQLd3BMUcyvfAfEL-drvIxdSl' -O sayur_webserver_nginx.zip
-
-# Ekstrak file zip
 unzip -o sayur_webserver_nginx.zip -d sayur_webserver_nginx
 
 mkdir -p /var/www/bayam
@@ -699,29 +693,19 @@ nano /etc/nginx/sites-available/bayam
 
 
 ln -s /etc/nginx/sites-available/bayam /etc/nginx/sites-enabled/
-
 cp -r /var/www/bayam/sayur_webserver_nginx/* /var/www/bayam/
-
 service php7.2-fpm start
-
 service nginx restart
-
 nginx -t
-
  ```
-  Di buncis (web server) :
+  Di buncis (web server) : <br>
 
-  # Update Package Lists
+```
 apt-get update
-
-
-# Install Nginx dan PHP jika belum terpasang
 apt-get install -y nginx php php-fpm wget unzip
 
-# Download file sayur_webserver_nginx.zip dari Google Drive
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1tFDk7pKRQLd3BMUcyvfAfEL-drvIxdSl' -O sayur_webserver_nginx.zip
 
-# Ekstrak file zip
 unzip -o sayur_webserver_nginx.zip -d sayur_webserver_nginx
 
 mkdir -p /var/www/buncis
