@@ -594,7 +594,9 @@ Konfigurasi shell script yang berada di dns slave
 
 - Screenshot
 
-  `Put your screenshot in here`
+  ![image](https://github.com/user-attachments/assets/67256973-ec4c-49e3-9810-aedff900d0a9)
+![image](https://github.com/user-attachments/assets/1a46c32d-5447-4437-bbd0-f7f6a940e86e)
+
 
 - Explanation
 
