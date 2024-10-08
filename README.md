@@ -800,8 +800,9 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 **Answer:**
 
 - Screenshot
+![image](https://github.com/user-attachments/assets/975356a8-92ec-4ee1-b7af-4a62c2899c66)
+![image](https://github.com/user-attachments/assets/35c604c2-63f2-4e3d-8484-b051230afc4d)
 
-  `Put your screenshot in here`
 
 - Explanation
 
