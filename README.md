@@ -573,13 +573,63 @@ Konfigurasi shell script yang berada di dns slave
 - Screenshot
 
   ![image](https://github.com/user-attachments/assets/a0c39509-8727-4e02-a0f8-25da465d861c)
+   ![image](https://github.com/user-attachments/assets/d2ac9235-7c1c-41f6-9287-d6d1d0fa3d2d)
 
 
 - Explanation
 
   `web server bayam berhasil ping ke sub domain vitamin yaitu k1.vitamin.brokoli.c05.com`
+Di Pokcoy (Slave):
 
-  ![image](https://github.com/user-attachments/assets/d2ac9235-7c1c-41f6-9287-d6d1d0fa3d2d)
+ ```
+nano /etc/bind/named.conf.local
+
+zone "k1.vitamin.brokoli.c05.com" {
+	type master;
+	file "/etc/bind/k1/k1.vitamin.brokoli.c05.com"; // Lokasi file cache zon
+};
+
+
+mkdir -p /etc/bind/k1
+
+cp /etc/bind/db.local /etc/bind/k1/k1.vitamin.brokoli.c05.com
+
+nano /etc/bind/k1/k1.vitamin.brokoli.c05.com
+
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@   	IN  	SOA 	k1.vitamin.brokoli.c05.com. root.k1.vitamin.brokoli.c05.com. (
+                        2024100601    ; Serial
+                     	604800     	; Refresh
+                      	86400     	; Retry
+                    	2419200     	; Expire
+                     	604800 )   	; Negative Cache TTL
+;
+@   	IN  	NS  	k1.vitamin.brokoli.c05.com.
+@   	IN  	A   	10.92.4.2
+www 	IN  	CNAME   k1.vitamin.brokoli.c05.com.
+k1  	IN  	A   	10.92.3.2
+@   	IN 	 AAAA    ::1
+
+service bind9 restart
+
+ ```
+
+Di brokoli (web server) :
+
+ ```
+
+nano /etc/resolv.conf 
+
+nameserver 10.92.3.2
+nameserver 10.92.3.3
+
+ping k1.vitamin.brokoli.c05.com.
+ping www.k1.vitamin.brokoli.c05.com.
+ ```
+
 
 
 <br>
@@ -600,7 +650,186 @@ Konfigurasi shell script yang berada di dns slave
 
 - Explanation
 
-  `Put your explanation in here`
+  `Client sudah bisa melakukan deploy dengan menggunakan lynx ip masing-masing webserver. Agar bisa dideploy, webserver mengofigurasi nginx seperti implementasi berikut.`
+
+  Di bayam (web server) :
+ ```
+apt-get update
+
+# Install Nginx dan PHP jika belum terpasang
+apt-get install -y nginx php php-fpm wget unzip
+
+# Download file sayur_webserver_nginx.zip dari Google Drive
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1tFDk7pKRQLd3BMUcyvfAfEL-drvIxdSl' -O sayur_webserver_nginx.zip
+
+# Ekstrak file zip
+unzip -o sayur_webserver_nginx.zip -d sayur_webserver_nginx
+
+mkdir -p /var/www/bayam
+
+cp -r sayur_webserver_nginx/* /var/www/bayam/
+
+nano /etc/nginx/sites-available/bayam
+
+ server {
+    listen 8001;
+
+    root /var/www/bayam;
+
+    index index.php index.html index.htm;
+    server_name BayamWebServer;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # pass PHP scripts to FastCGI server
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+}
+
+
+ln -s /etc/nginx/sites-available/bayam /etc/nginx/sites-enabled/
+
+cp -r /var/www/bayam/sayur_webserver_nginx/* /var/www/bayam/
+
+service php7.2-fpm start
+
+service nginx restart
+
+nginx -t
+
+ ```
+  Di buncis (web server) :
+
+  # Update Package Lists
+apt-get update
+
+
+# Install Nginx dan PHP jika belum terpasang
+apt-get install -y nginx php php-fpm wget unzip
+
+# Download file sayur_webserver_nginx.zip dari Google Drive
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1tFDk7pKRQLd3BMUcyvfAfEL-drvIxdSl' -O sayur_webserver_nginx.zip
+
+# Ekstrak file zip
+unzip -o sayur_webserver_nginx.zip -d sayur_webserver_nginx
+
+mkdir -p /var/www/buncis
+
+cp -r sayur_webserver_nginx/* /var/www/buncis/
+
+nano /etc/nginx/sites-available/buncis
+
+server {
+    listen 8002;
+
+    root /var/www/buncis;
+
+    index index.php index.html index.htm;
+    server_name BuncisWebServer;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # pass PHP scripts to FastCGI server
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+}
+
+
+ln -s /etc/nginx/sites-available/buncis /etc/nginx/sites-enabled/
+
+cp -r /var/www/buncis/sayur_webserver_nginx/* /var/www/buncis/
+
+service php7.2-fpm start
+
+service nginx restart
+
+nginx -t
+
+ ```
+
+ Di brokoli (web server) :
+ ```
+apt-get update
+
+apt-get install -y nginx php php-fpm wget unzip
+
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1tFDk7pKRQLd3BMUcyvfAfEL-drvIxdSl' -O sayur_webserver_nginx.zip
+
+
+unzip -o sayur_webserver_nginx.zip -d sayur_webserver_nginx
+
+mkdir -p /var/www/brokoli
+
+cp -r sayur_webserver_nginx/* /var/www/brokoli/
+
+nano  /etc/nginx/sites-available/brokoli
+
+ server {
+    listen 8003;
+
+    root /var/www/brokoli;
+
+    index index.php index.html index.htm;
+    server_name BrokoliWebServer;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # pass PHP scripts to FastCGI server
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+}
+
+
+ln -s /etc/nginx/sites-available/brokoli /etc/nginx/sites-enabled/
+
+cp -r /var/www/brokoli/sayur_webserver_nginx/* /var/www/brokoli/
+
+service php7.2-fpm start
+
+service nginx restart
+
+nginx  -t
+ ```
+
+Testing di tomat client :
+ ```
+lynx 10.92.4.2
+lynx 10.92.4.3
+lynx 10.92.4.4 
+ ```
 
 <br>
 
@@ -616,14 +845,49 @@ Konfigurasi shell script yang berada di dns slave
 
 
 ![image](https://github.com/user-attachments/assets/3aaba300-0f8b-4e57-90b4-b07bac5323d3)
-
 ![image](https://github.com/user-attachments/assets/f4cb7d51-92b9-46af-a92f-fb99535e6f31)
 ![image](https://github.com/user-attachments/assets/94722a74-71a4-4c83-afce-90e535d5a374)
 
 
 - Explanation
 
-  `Put your explanation in here`
+  `Kini client sudah bisa menampilkan resep dengan menambahkan hostname dan mengecek di error log sebagai berikut : `
+
+
+CARA TESTING BAYAM
+ ```
+curl http://BayamWebServer:8001
+
+tail -f /var/log/nginx/error.log
+
+hostname Bayam
+
+curl http://BayamWebServer:8001
+
+mv /var/www/bayam/resep1.php /var/www/bayam/resep_1.php
+
+curl http://BayamWebServer:8001
+ ```
+CARA TESTING BUNCIS
+ ```
+curl http://BuncisWebServer:8002
+
+hostname Buncis
+
+mv /var/www/buncis/resep2.php /var/www/buncis/resep_2.php
+
+curl http://BuncisWebServer:8002
+ ```
+CARA TESTING BROKOLI
+ ```
+curl http://BrokoliWebServer:8003
+
+hostname Brokoli
+
+mv /var/www/brokoli/resep3.php /var/www/brokoli/resep_3.php
+
+curl http://BrokoliWebServer:8003
+ ```
 
 <br>
 
@@ -666,7 +930,65 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 
 - Explanation
 
-  `Put your explanation in here`
+  `Hasil catatan log sudah sesuai format dengan cara menambahkan custom log format di access log yang sudah dibuat sebelumnya.`
+
+Bayam
+ ```
+nano /etc/nginx/nginx.conf
+
+tambahkan format custom log di bawah http :
+ 
+log_format custom_log_format '[$time_local] Jarkom Node $server_name Access from $remote_addr using method "$request" returned status $status with $body_bytes_sent bytes sent in $request_time seconds';
+ 
+nano /etc/nginx/sites-available/bayam
+tambahkan di sebelah access_log
+custom_log_format;
+ ```
+TESTING
+ ```
+nginx -t
+service nginx restart
+Client :
+curl http://BayamWebServer:8001
+tail -f /var/log/nginx/access.log
+ ```
+
+Buncis
+ ```
+nano /etc/nginx/nginx.conf
+
+log_format custom_log_format '[$time_local] Jarkom Node $server_name Access from $remote_addr using method "$request" returned status $status with $body_bytes_sent bytes sent in $request_time seconds';
+
+nano /etc/nginx/sites-available/buncis
+custom_log_format;
+ ```
+
+TESTING
+ ```
+nginx -t
+service nginx restart
+curl http://BuncisWebServer:8002
+tail -f /var/log/nginx/access.log
+ ```
+
+Brokoli
+ ```
+nano /etc/nginx/nginx.conf
+log_format custom_log_format '[$time_local] Jarkom Node $server_name Access from $remote_addr using method "$request" returned status $status with $body_bytes_sent bytes sent in $request_time seconds';
+ 
+nano /etc/nginx/sites-available/brokoli
+
+
+custom_log_format;
+ ```
+
+TESTING
+ ```
+nginx -t
+service nginx restart
+curl http://BrokoliWebServer:8003
+tail -f /var/log/nginx/access.log
+ ```
 
 <br>
 
@@ -686,7 +1008,66 @@ Nama worker yang sedang dilayani (misalnya: Bayam, Brokoli, atau Buncis).
 
 - Explanation
 
-  `Put your explanation in here`
+  `Agar webserver bisa dibuka dengan nama dan alias tsb, maka harus dilakukan virtual host dan site configuration. Jika sudah dapat dilakukan testing di lynx`
+
+Brokoli :
+ ```
+apt-get update
+apt-get install lynx
+
+#Download & Unzip
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1NhsaTLD4Zk06BZJCqdN_oqoxB3uIg2C7' -O vitamin_brokoli.zip
+
+unzip vitamin_brokoli.zip -d /var/www/
+
+mv /var/www/vitamin.brokoli.yyy.com /var/www/vitamin.brokoli.c05
+
+#Set permission
+chown -R www-data:www-data /var/www/vitamin.brokoli.c05
+chmod -R 755 /var/www/vitamin.brokoli.c05
+
+#Virtual Host Configuration
+nano  /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf
+
+<VirtualHost *:80>
+    ServerAdmin admin@vitamin.brokoli.c05.com
+    ServerName vitamin.brokoli.c05.com
+    ServerAlias www.vitamin.brokoli.c05.com
+
+    DocumentRoot /var/www/vitamin.brokoli.c05
+
+    ErrorLog ${APACHE_LOG_DIR}/vitamin.brokoli.c05.error.log
+    CustomLog ${APACHE_LOG_DIR}/vitamin.brokoli.c05.access.log combined
+
+    <Directory /var/www/vitamin.brokoli.c05>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+
+#Enable Site
+a2ensite vitamin.brokoli.c05.com.conf
+
+#Restart apache
+service apache2 restart
+ ```
+
+TESTING
+
+ ```
+client
+
+nano /etc/hosts
+
+10.92.4.2 vitamin.brokoli.c05.com www.vitamin.brokoli.c05.com
+
+lynx http://vitamin.brokoli.c05.com
+
+ ```
+
+
 
 <br>
 
