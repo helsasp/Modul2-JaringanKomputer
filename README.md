@@ -634,7 +634,7 @@ ping www.k1.vitamin.brokoli.c05.com.
 
 <br>
 
-## Soal 9
+## Soal 9 (REVISI)
 
 > Bayam, Brokoli, dan Buncis masing-masing berfungsi sebagai web server nginx yang menyajikan resep khusus untuk jenis sayuran yang mereka tangani. Untuk mengaktifkan web server pada masing-masing worker, lakukan deployment website menggunakan sumber yang tersedia di sayur_webserver_nginx. Tambahkan konfigurasi untuk log error ke file /var/log/nginx/error.log dan log access ke file /var/log/nginx/access.log.
 
@@ -817,7 +817,7 @@ lynx 10.92.4.4
 
 <br>
 
-## Soal 10
+## Soal 10 (REVISI)
 
 > Pada masing masing worker nginx, akan terdapat beberapa hal yang perlu diperbaiki pada resource yang diberikan untuk bisa menampilkan resep saat halaman dimuat. Analisis kesalahan yang ada di resource melalui file /var/log/nginx/error.log dan perbaiki hingga halaman bisa menampilkan resep sesuai dengan worker nya.
 
@@ -875,7 +875,7 @@ curl http://BrokoliWebServer:8003
 
 <br>
 
-## Soal 11
+## Soal 11 (REVISI)
 
 > Setelah website berhasil dideploy pada masing-masing worker (Bayam, Brokoli, dan Buncis) dan halaman dapat menampilkan resep sayuran yang sesuai,  buatlah custom access log ke file /var/log/nginx/access.log di masing-masing web server worker menggunakan format log tertentu seperti di bawah:
 > - Tanggal dan waktu akses dalam format standar log.
@@ -976,7 +976,7 @@ tail -f /var/log/nginx/access.log
 
 <br>
 
-## Soal 12
+## Soal 12 (REVISI)
 
 > Informasi vitamin pada sayur brokoli akan ditampilkan pada subdomain vitamin.brokoli.yyy.com di node brokoli, buatlah DocumentRoot yang disimpan pada /var/www/vitamin.brokoli.yyy. Konfigurasikan webserver dengan nama server vitamin.brokoli.yyy.com dan server alias www.vitamin.brokoli.yyy.com. Lakukan konfigurasi Apache Web Server pada Brokoli dengan menggunakan sumber yang tersedia di [sini](https://docs.google.com/uc?export=download&id=1QbGkKXo3jt4c68AdVAkl1hD4LolTUPg2).
 
@@ -1055,7 +1055,7 @@ lynx http://vitamin.brokoli.c05.com
 
 <br>
 
-## Soal 13
+## Soal 13 (REVISI)
 
 > Pada subdomain vitamin.brokoli.yyy.com, terdapat subfolder /nutrisi yang menyediakan informasi tentang berbagai vitamin dalam brokoli, seperti Vitamin A, C, dan K. Aktifkan directory listing untuk folder /nutrisi, dan buatlah rewrite rule di Apache untuk memperbaiki URL agar halaman seperti www.vitamin.brokoli.yyy.com/nutrisi/vitamin_a.php dapat diakses hanya dengan www.vitamin.brokoli.yyy.com/nutrisi/vitamin_a. Pastikan setiap halaman vitamin dapat diakses langsung melalui url yang telah disederhanakan.
 
@@ -1112,7 +1112,7 @@ lynx http://www.vitamin.brokoli.c05.com/nutrisi/vitamin_a
  ```
 <br>
 
-## Soal 14
+## Soal 14 (REVISI)
 
 > Tambahkan alias untuk folder /public/images/ pada subdomain www.vitamin.brokoli.yyy.com agar folder tersebut dapat diakses langsung melalui url www.vitamin.brokoli.yyy.com/img.
 
@@ -1153,7 +1153,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 <br>
 
-## Soal 15
+## Soal 15 (REVISI)
 
 > Karena terdapat resep rahasia di file /secret/recipe_secret.txt pada subdomain www.vitamin.brokoli.yyy.com, konfigurasikan folder /secret agar tidak dapat diakses oleh pengguna (dengan menampilkan 403 Forbidden).
 
@@ -1173,7 +1173,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 <br>
 
-## Soal 16
+## Soal 16 (REVISI)
 
 > Karena dinilai terlalu panjang coba ubah konfigurasi www.vitamin.brokoli.yyy.com/public/js menjadi www.vitamin.brokoli.yyy.com/js
 
@@ -1193,7 +1193,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 <br>
 
-## Soal 17
+## Soal 17 (REVISI)
 
 > Supaya Web kita aman terkendali maka ubah konfigurasi www.k1.vitamin.brokoli.yyy.com menjadi hanya bisa di akses oleh port 9696 dan 8888
 
@@ -1213,7 +1213,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 <br>
 
-## Soal 18
+## Soal 18 (REVISI)
 
 > Lanjutkan dari nomor sebelumnya buatlah autentikasi dengan username “Seblak” dan password “sehatyyy” dengan yyy adalah kode kelompok. Letakkan Document Root pada /var/www/k1.vitamin.brokoli.yyy.
 
@@ -1232,7 +1232,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 <br>
 
-## Soal 19
+## Soal 19 (REVISI)
 
 > Konfigurasikan agar setiap kali IP Brokoli diakses dengan lynx, secara otomatis akan dialihkan ke www.brokoli.yyy.com (alias).
 
@@ -1250,7 +1250,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 <br>
 
-## Soal 20
+## Soal 20 (REVISI)
 
 > Karena jumlah pengunjung website www.vitamin.brokoli.yyy.com semakin meningkat dan terdapat banyak gambar random, ubah permintaan gambar yang mengandung substring "vitamin" agar diarahkan ke file vitamin.png.
 
@@ -1272,8 +1272,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 <br>
   
 ## Problems
-lots of problems actually
+Masih kesusahan konfigurasi di bagian web server.
 
 ## Revisions (if any)
-
-Webserver tasks were done during the revisions period
+NO 9-20 REVISI
