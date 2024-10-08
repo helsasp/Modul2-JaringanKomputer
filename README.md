@@ -1072,8 +1072,44 @@ lynx http://vitamin.brokoli.c05.com
 
 - Explanation
 
-  `Put your explanation in here`
+  `Kini client sudah bisa akses subfolder vitamin a,c,k yang ada dalam nutri dengan mengonfigurasikan apache yang terdiri dari beberapa konfigurasi, seperti konfigurasi direktori, rewrite, dan autoindex`
 
+
+Di brokoli :
+ ```
+nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf
+
+#Tambahkan
+<Directory /var/www/vitamin.brokoli.c05/nutrisi>
+    Options +Indexes
+    AllowOverride All
+</Directory>
+
+Selanjutnya
+nano /var/www/vitamin.brokoli.c05/nutrisi/.htaccess
+
+
+RewriteEngine On
+RewriteBase /nutrisi/
+
+# Rewrite rule to remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Enable mod_rewrite:
+a2enmod rewrite
+
+# Enable mod_autoindex:
+a2enmod autoindex
+
+# Restart Apache to apply the changes:
+service apache2 restart
+ ```
+TESTING
+ ```
+lynx http://www.vitamin.brokoli.c05.com/nutrisi/vitamin_a
+ ```
 <br>
 
 ## Soal 14
@@ -1092,7 +1128,28 @@ lynx http://vitamin.brokoli.c05.com
 
 - Explanation
 
-  `Put your explanation in here`
+  `Sekarang client bisa mengakses folder /public/images pada subdomain tsb dengan url www.vitamin.brokoli.yyy.com/img dengan melakukan konfigurasi apache dan juga menambahkan alias dan direktori `
+
+Di brokoli :
+ ```
+Edit Apache Configuration
+nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf
+
+Alias /img /var/www/vitamin.brokoli.c05/public/images/
+
+<Directory /var/www/vitamin.brokoli.c05/public/images/>
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+
+# Restart  apache
+service apache2 restart
+ ```
+TESTING (client)
+ ```
+lynx http://www.vitamin.brokoli.c05.com/img
+ ```
 
 <br>
 
