@@ -1189,6 +1189,12 @@ lynx http://www.vitamin.brokoli.c05.com/img
   Kemudian melakukan restart terhadap apache2
 
   `service restart apache2`
+
+  TESTING
+
+  `lynx http://www.vitamin.brokoli.c05.com/secret/recipe_secret.txt`
+
+
   
 <br>
 
@@ -1226,10 +1232,11 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 Kemudian melakukan restart terhadap apache2
 
-`service apache2 restar`
+`service apache2 restart`
 
+TESTING
 
-
+`lynx http://www.vitamin.brokoli.c05.com/js/script.js`
 
 <br>
 
@@ -1299,7 +1306,11 @@ Kemudian melakukan restart terhadap apache2
   
   `service apache2 restart`
 
+  TESTING
   
+  `curl http://www.k1.vitamin.brokoli.c05.com:9696 `
+
+  `curl http://www.k1.vitamin.brokoli.c05.com:8888`
 
 
 
