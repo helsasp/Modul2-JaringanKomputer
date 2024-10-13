@@ -1225,6 +1225,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
   ```
 
 Kemudian melakukan restart terhadap apache2
+
 `service apache2 restar`
 
 
@@ -1248,7 +1249,59 @@ Kemudian melakukan restart terhadap apache2
 
 - Explanation
 
-  `Put your explanation in here`
+  `Dapat dilihat bahwasanya subdomain brokoli yaitu wwww.k1.vitamin.brokoli.c05.com hanya dapat diakses dengan port 9696 serta 8888, hal itu dibuktikan pada saat kita melakukan test dengan curl`
+  
+  <br>
+  
+  Download & Unzip
+  `wget --no-check-certificate wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1SRnelY4XrtmhJg_Ly1nUJo1Jf91SnmtB' -O k1_vitamin_config.zip`
+
+  `unzip k1_vitamin_config.zip -d /var/www/`
+
+  `mv /var/www/k1.vitamin.brokoli.yyy.com /var/www/k1.vitamin.brokoli.c05`
+  <br>
+  
+  `nano /etc/apache2/sites-available/k1.vitamin.brokoli.c05.conf`
+
+  ```
+  <VirtualHost *:9696 *:8888>
+    ServerAdmin admin@k1.vitamin.brokoli.c05.com
+    ServerName k1.vitamin.brokoli.c05.com
+    ServerAlias www.k1.vitamin.brokoli.c05.com
+
+    DocumentRoot /var/www/k1.vitamin.brokoli.c05
+
+    ErrorLog ${APACHE_LOG_DIR}/vitamin.k1.brokoli.c05.error.log
+    CustomLog ${APACHE_LOG_DIR}/vitamin.k1.brokoli.c05.access.log combined
+
+    <Directory /var/www/k1.vitamin.brokoli.c05>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+  </VirtualHost>
+  ```
+  `nano /etc/apache2/ports.conf`
+  
+  `Listen 9696`
+  
+  `Listen 8888`
+  <br>
+  
+  `nano /etc/hosts`
+  `10.92.4.2   www.k1.vitamin.brokoli.c05.com k1.vitamin.brokoli.c05.com`
+  <br>
+  
+  `a2ensite k1.vitamin.brokoli.c05.conf`
+  <br>
+  
+  Kemudian melakukan restart terhadap apache2
+  
+  `service apache2 restart`
+
+  
+
+
 
 <br>
 
