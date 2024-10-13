@@ -1293,17 +1293,16 @@ TESTING di client
   ```
   `nano /etc/apache2/ports.conf`
   
-  `Listen 9696`
-  
-  `Listen 8888`
-  <br>
+  ```
+  Listen 9696
+  Listen 8888
+  ```
   
   `nano /etc/hosts`
-  `10.92.4.2   www.k1.vitamin.brokoli.c05.com k1.vitamin.brokoli.c05.com`
-  <br>
+  
+  `10.92.4.2	www.k1.vitamin.brokoli.c05.com k1.vitamin.brokoli.c05.com`
   
   `a2ensite k1.vitamin.brokoli.c05.conf`
-  <br>
   
   Kemudian melakukan restart terhadap apache2
   
