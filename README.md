@@ -1331,7 +1331,43 @@ TESTING
 
 - Explanation
 
-  `Put your explanation in here`
+  `Dapat dilihat bahwasanya dapat masuk dengan authorized username Seblak serta password sehatc05`
+
+  `nano  /etc/apache2/sites-available/k1.vitamin.brokoli.c05.conf`
+
+  Tambahkan di bawahnya
+
+  ```
+  <Directory /var/www/k1.vitamin.brokoli.c05>
+  	AuthType Basic
+        AuthName "Restricted Content"
+        AuthUserFile /etc/apache2/.htpasswd
+        Require valid-user
+  </Directory>
+  ErrorLog ${APACHE_LOG_DIR}/k1.vitamin.brokoli.c05.error.log
+  CustomLog ${APACHE_LOG_DIR}/k1.vitamin.brokoli.c05.access.log combined
+  ```
+
+  `htpasswd -c -b /etc/apache2/.htpasswd Seblak sehatc05`
+
+  `a2ensite k1.vitamin.brokoli.c05.conf`
+
+  Melakukan restart terhadap apache2
+
+  `service apache2 restart`
+
+  TESTING
+
+  ```
+  lynx http://www.k1.vitamin.brokoli.c05.com:9696
+  lynx http://www.k1.vitamin.brokoli.c05.com:8888
+  ```
+
+  Cara masuknya
+  
+  `Klik enter > masukin username : Seblak > enter > Password : sehatc05`
+
+
 
 <br>
 
