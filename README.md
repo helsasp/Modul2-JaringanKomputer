@@ -1169,8 +1169,27 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 - Explanation
 
-  `Put your explanation in here`
+  `Terlihat subdomain http://www.vitamin.brokoli.c05.com/secret/recipe_secret.txt tidak dapat diakses, pada saat diakses menggunakan lynx maka menampilkan 403 Forbidden`
 
+  <br>
+
+  Edit Apache Configuration
+
+  `nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf`
+
+  <br>
+
+  ```
+  #Tambahkan
+  <Directory /var/www/vitamin.brokoli.c05/secret>
+  	Require all denied
+  </Directory>
+  ```
+  <br>
+  Kemudian melakukan restart terhadap apache2
+
+  `service restart apache2`
+  
 <br>
 
 ## Soal 16 (REVISI)
@@ -1189,7 +1208,27 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
 - Explanation
 
-  `Put your explanation in here`
+  `Terlihat sudah dapat dilakukan lynx pada url http://www.vitamin.brokoli.c05.com/js/script.js, mendandakan bahwa pengubahan konfigurasi telah berhasil`
+
+
+  Edit Apache Configuration
+  `nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf`
+  
+  ```
+  #Tambahkan
+  Alias /js /var/www/vitamin.brokoli.c05/public/js
+  <Directory /var/www/vitamin.brokoli.c05/public/js>
+  	Options Indexes FollowSymLinks
+  	AllowOverride None
+  	Require all granted
+  </Directory>
+  ```
+
+Kemudian melakukan restart terhadap apache2
+`service apache2 restar`
+
+
+
 
 <br>
 
