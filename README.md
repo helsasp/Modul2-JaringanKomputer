@@ -1172,7 +1172,9 @@ lynx http://www.vitamin.brokoli.c05.com/img
   `Terlihat subdomain http://www.vitamin.brokoli.c05.com/secret/recipe_secret.txt tidak dapat diakses, pada saat diakses menggunakan lynx maka menampilkan 403 Forbidden`
 
   <br>
-
+  
+  BrokoliWebServer
+  
   Edit Apache Configuration
 
   `nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf`
@@ -1190,7 +1192,7 @@ lynx http://www.vitamin.brokoli.c05.com/img
 
   `service restart apache2`
 
-  TESTING
+  TESTING di client
 
   `lynx http://www.vitamin.brokoli.c05.com/secret/recipe_secret.txt`
 
@@ -1215,8 +1217,9 @@ lynx http://www.vitamin.brokoli.c05.com/img
 - Explanation
 
   `Terlihat sudah dapat dilakukan lynx pada url http://www.vitamin.brokoli.c05.com/js/script.js, mendandakan bahwa pengubahan konfigurasi telah berhasil`
-
-
+  
+  BrokoliWebServer
+  
   Edit Apache Configuration
   `nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf`
   
@@ -1234,7 +1237,7 @@ Kemudian melakukan restart terhadap apache2
 
 `service apache2 restart`
 
-TESTING
+TESTING di client
 
 `lynx http://www.vitamin.brokoli.c05.com/js/script.js`
 
@@ -1259,6 +1262,8 @@ TESTING
   `Dapat dilihat bahwasanya subdomain brokoli yaitu wwww.k1.vitamin.brokoli.c05.com hanya dapat diakses dengan port 9696 serta 8888, hal itu dibuktikan pada saat kita melakukan test dengan curl`
   
   <br>
+  
+  BrokoliWebServer
   
   Download & Unzip
   `wget --no-check-certificate wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1SRnelY4XrtmhJg_Ly1nUJo1Jf91SnmtB' -O k1_vitamin_config.zip`
@@ -1306,7 +1311,7 @@ TESTING
   
   `service apache2 restart`
 
-  TESTING
+  TESTING di client
   
   `curl http://www.k1.vitamin.brokoli.c05.com:9696 `
 
@@ -1333,6 +1338,8 @@ TESTING
 
   `Dapat dilihat bahwasanya dapat masuk dengan authorized username Seblak serta password sehatc05`
 
+  BrokoliWebServer
+  
   `nano  /etc/apache2/sites-available/k1.vitamin.brokoli.c05.conf`
 
   Tambahkan di bawahnya
@@ -1356,8 +1363,8 @@ TESTING
 
   `service apache2 restart`
 
-  TESTING
-
+  TESTINGb di client
+  
   ```
   lynx http://www.k1.vitamin.brokoli.c05.com:9696
   lynx http://www.k1.vitamin.brokoli.c05.com:8888
@@ -1385,7 +1392,40 @@ TESTING
 
 - Explanation
 
-  `Put your explanation in here`
+  `Terlihat pada saat ip brokoli di lynx/diakses maka dia akan langsung menuju ke wwww.brokoli.c05.com`
+  
+  
+  BrokoliWebServer
+  
+  `nano /etc/apache2/sites-available/brokoli.c05.com.conf`
+  ```
+	<VirtualHost *:80>
+	    ServerAdmin admin@brokoli.c05.com
+	    ServerName brokoli.c05.com
+	    ServerAlias www.brokoli.c05.com
+	
+	    # Redirect all requests to www.brokoli.yyy.com
+	    Redirect 301 / http://www.brokoli.yyy.com/
+	
+	    DocumentRoot /var/www/brokoli.c05
+	    ErrorLog ${APACHE_LOG_DIR}/brokoli.c05.error.log
+	    CustomLog ${APACHE_LOG_DIR}/brokoli.c05.access.log combined
+	</VirtualHost>
+  ```
+
+
+Aktifkan virtual host
+
+`a2ensite brokoli.c05.com.conf`
+
+Melakukan restart terhadap apache2
+
+`service apache2 restart`
+
+TESTING di client
+
+`lynx http://10.92.4.2`
+
 
 <br>
 
@@ -1406,7 +1446,49 @@ TESTING
 
 - Explanation
 
-  `Put your explanation in here`
+  `URL http://www.vitamin.brokoli.c05.com/img/somevitaminimage.jpg sudah dapat diakses, dibuktikan pada saat dicoba dengan lynx http://www.vitamin.brokoli.c05.com/img/somevitaminimage.jpg`
+
+  BrokoliWebServer
+  
+  `nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf`
+
+  Hapus semua, kemudian masukkan di bawah ini
+  
+```
+	  <VirtualHost *:80>
+	    ServerAdmin admin@vitamin.brokoli.c05.com
+	    ServerName vitamin.brokoli.c05.com
+	    ServerAlias www.vitamin.brokoli.c05.com
+	
+	    DocumentRoot /var/www/vitamin.brokoli.c05
+	
+	    <Directory /var/www/vitamin.brokoli.c05>
+	        Options Indexes FollowSymLinks
+	        AllowOverride All
+	        Require all granted
+	    </Directory>
+	
+	    # Rewrite rule to redirect requests containing 'vitamin' in the image name
+	    RewriteEngine On
+	    RewriteCond %{REQUEST_URI} ^.*vitamin.*\.(jpg|png|jpeg|gif)$ [NC]
+	    RewriteRule ^.*$ /vitamin.png [L]
+	
+	    ErrorLog ${APACHE_LOG_DIR}/vitamin.brokoli.c05.error.log
+	    CustomLog ${APACHE_LOG_DIR}/vitamin.brokoli.c05.access.log combined
+	</VirtualHost>
+```
+
+Tempatkan file png ke DocumentRoot
+
+`cp /var/www/vitamin.brokoli.c05/public/images/vitamin.png /var/www/vitamin.brokoli.c05/`
+
+Kemudian melakukan restart terhadap apache2
+
+`service apache2 restart`
+
+Uji aturan rewrite ini dengan mengakses gambar yang memiliki substring "vitamin" di dalam nama file-nya. Gunakan lynx atau browser lain untuk mengakses URL
+
+`lynx http://www.vitamin.brokoli.c05.com/img/somevitaminimage.jpg`
 
 <br>
   
