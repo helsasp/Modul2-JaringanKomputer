@@ -1176,10 +1176,8 @@ lynx http://www.vitamin.brokoli.c05.com/img
   BrokoliWebServer
   
   Edit Apache Configuration
-
+  
   `nano /etc/apache2/sites-available/vitamin.brokoli.c05.com.conf`
-
-  <br>
 
   ```
   #Tambahkan
